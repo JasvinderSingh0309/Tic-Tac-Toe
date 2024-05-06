@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const gameArea=[
   [null,null,null],
   [null,null,null],
@@ -7,21 +5,30 @@ const gameArea=[
 ]
 
 function GameBoard(props) {
-  let [isGameArea, setIsGameArea] = useState(gameArea);
+  let isGameArea = gameArea;
 
-  function handlePlayerClick(rowi,coli) { //here also we are updating the board on its previous value.
+  for(let turn of props.turns) {
+    let {square, player} = turn;
+    let {row, col} = square;
 
-    setIsGameArea( (board) => {
-      //let updateBoard = [...board.map(innerArr => [...innerArr])]; // array is pbr so, update its copy.
-
-      let updateBoard = [...board]; //this also works as any ways we just need a new array with copied elements so that we can update properly.
-      
-      updateBoard[rowi][coli] = props.sym;
-      return updateBoard;
-    });
-
-    props.playerClick();
+    isGameArea[row][col] = player;
   }
+
+  // let [isGameArea, setIsGameArea] = useState(gameArea);
+
+  // function handlePlayerClick(rowi,coli) { //here also we are updating the board on its previous value.
+
+  //   setIsGameArea( (board) => {
+  //     //let updateBoard = [...board.map(innerArr => [...innerArr])]; // array is pbr so, update its copy.
+
+  //     let updateBoard = [...board]; //this also works as any ways we just need a new array with copied elements so that we can update properly.
+      
+  //     updateBoard[rowi][coli] = props.sym;
+  //     return updateBoard;
+  //   });
+
+  //   props.playerClick();
+  // }
 
   return (
     <ol id="game-board">
@@ -30,7 +37,7 @@ function GameBoard(props) {
           <ol>
             {row.map((col,colin) => 
               <li key={colin}>
-                <button onClick={() => handlePlayerClick(rin,colin)}>{col}</button>
+                <button onClick={() => props.playerClick(rin,colin)}>{col}</button>
               </li>
             )}
           </ol>

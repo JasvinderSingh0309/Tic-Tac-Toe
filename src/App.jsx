@@ -3,15 +3,21 @@ import {useState} from "react";
 import Player from "./components/Player";
 import GameBoard from "./components/GameBoard";
 
-function App() {
-  let [gameTurns, setGameTurns] = useState([]);
-  // let [activePlayer, setActivePlayer] = useState("X");
-
+function deriveActivePlayer(gameTurns) {
   let currPlayer = "X";
 
   if(gameTurns.length>0 && gameTurns[0].player === "X") {
     currPlayer = "O";
   }
+
+  return currPlayer;
+}
+
+function App() {
+  let [gameTurns, setGameTurns] = useState([]);
+  // let [activePlayer, setActivePlayer] = useState("X");
+
+  let currPlayer = deriveActivePlayer(gameTurns);
 
   function handlePlayerClick (rowIn, colIn) {
     // if(activePlayer === "X") setActivePlayer("O");
@@ -20,11 +26,7 @@ function App() {
     // setActivePlayer((currSym) => currSym === "X" ? "O" : "X");
 
     setGameTurns(prevTurn => {
-      let currPlayer = "X";
-
-      if(prevTurn.length>0 && prevTurn[0].player === "X") {
-        currPlayer = "O";
-      }
+      let currPlayer = deriveActivePlayer(prevTurn);
   
       let updatedGameBoard = [{
           square :{row:rowIn, col:colIn}, player:currPlayer,

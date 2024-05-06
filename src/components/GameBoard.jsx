@@ -35,9 +35,12 @@ function GameBoard(props) {
       {isGameArea.map( (row,rin) => 
         <li key={rin}>
           <ol>
-            {row.map((col,colin) => 
+            {row.map((playerSym,colin) => 
               <li key={colin}>
-                <button onClick={() => props.playerClick(rin,colin)}>{col}</button>
+                <button 
+                  onClick={() => props.playerClick(rin,colin)}
+                  disabled={playerSym !== null}
+                >{playerSym}</button>
               </li>
             )}
           </ol>

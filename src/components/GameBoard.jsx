@@ -1,19 +1,5 @@
-const gameArea=[
-  [null,null,null],
-  [null,null,null],
-  [null,null,null],
-]
-
 function GameBoard(props) {
-  let isGameArea = gameArea;
-
-  for(let turn of props.turns) {
-    let {square, player} = turn;
-    let {row, col} = square;
-
-    isGameArea[row][col] = player;
-  }
-
+  
   // let [isGameArea, setIsGameArea] = useState(gameArea);
 
   // function handlePlayerClick(rowi,coli) { //here also we are updating the board on its previous value.
@@ -32,7 +18,7 @@ function GameBoard(props) {
 
   return (
     <ol id="game-board">
-      {isGameArea.map( (row,rin) => 
+      {props.board.map( (row,rin) => 
         <li key={rin}>
           <ol>
             {row.map((playerSym,colin) => 

@@ -6,6 +6,10 @@ function Player(props) {
 
   function handleEditClick() {
     setIsEditing((lastIsEditing) => !lastIsEditing); // if changing state based on previous state use this callback functions.
+
+    if(isEditing) {
+      props.onNameChange(props.symbol, player);
+    }
   }
 
   function handleNameChange(event) {

@@ -5,7 +5,7 @@ function Player(props) {
   let [player,setPlayer] = useState(props.name);
 
   function handleEditClick() {
-    setIsEditing((lastIsEditing) => !lastIsEditing); // if changing state based on previous state use this callback functions.
+    setIsEditing((lastIsEditing) => !lastIsEditing);
 
     if(isEditing) {
       props.onNameChange(props.symbol, player);
@@ -13,7 +13,6 @@ function Player(props) {
   }
 
   function handleNameChange(event) {
-    // console.log(event.target.value);
     setPlayer(event.target.value);
   }
 

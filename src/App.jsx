@@ -22,7 +22,6 @@ function deriveActivePlayer(gameTurns) {
   if(gameTurns.length>0 && gameTurns[0].player === "X") {
     currPlayer = "O";
   }
-
   return currPlayer;
 }
 

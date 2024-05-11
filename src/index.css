@@ -298,7 +298,7 @@ ol {
   .player input {
     width: 4.5rem;
     font-size: 10px;
-    margin-left: 5px;
+    margin-left: 20px;
   }
   #game-over h2 {
     font-size: 40px;
